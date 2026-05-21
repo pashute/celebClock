@@ -54,4 +54,4 @@ Line format:
 - [v] 2026-05-21 Remove green fingertip dot, then commit and push (dot removed).
 - [v] 2026-05-21 Add celebshot screenshot to README using imgs/celebClockScreenshot.jpg.
 - [v] 2026-05-21 Clarified screenshot filename preference to celebclockscreenshot; update README/path accordingly.
-- [ ] 2026-05-21 Commit and push screenshot rename + README path update.
+- [v] 2026-05-21 Commit and push screenshot rename + README path update (commit ae92105).
