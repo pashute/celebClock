@@ -52,3 +52,6 @@ Line format:
 - [ ] 2026-05-21 After approval only: add third circle on outer tick-edge circle and crop image to circular boundary.
 - [v] 2026-05-21 User requested immediate crop: circle boundary at outside end of red dot (applied crop radius 197 from center).
 - [v] 2026-05-21 Remove green fingertip dot, then commit and push (dot removed).
+- [v] 2026-05-21 Add celebshot screenshot to README using imgs/celebClockScreenshot.jpg.
+- [v] 2026-05-21 Clarified screenshot filename preference to celebclockscreenshot; update README/path accordingly.
+- [ ] 2026-05-21 Commit and push screenshot rename + README path update.

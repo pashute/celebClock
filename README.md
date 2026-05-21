@@ -1,5 +1,9 @@
 # Celebrity Minute-Hand Clock — Project Plan
 
+## Screenshot
+
+![CelebClock screenshot](imgs/celebclockscreenshot.jpg)
+
 ## Concept
 An analog clock where instead of a minute hand, a celebrity image is displayed in the center, pointing outward toward the current minute. The celebrity's face and body naturally face the direction they're pointing. The pointed-at tick mark or hour numeral enlarges while active.
 
