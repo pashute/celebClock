@@ -25,6 +25,13 @@ Updated workflow (2026-05-21, per user correction)
 6. Once hour circle is confirmed, estimate resize amount and effect on minute pointed at.
 7. Once confirmed, apply resize.
 
+Updated workflow (2026-05-21, latest)
+1. Keep existing circles fixed in place.
+2. Change confirmed hour-target circle color to red.
+3. Resize image so fingertip aligns to the red target circle.
+4. Wait for user approval that resize worked.
+5. Only after approval: add third circle on outer tick-edge circle and crop image to that circular boundary.
+
 
 Line format:
 - [ ] timestamp action-summary. 
@@ -34,5 +41,14 @@ Line format:
 - [v] 2026-05-21 Read page code and add first bright fingertip marker.
 - [v] 2026-05-21 Add first fingertip circle marker to SVG and report coordinates (cx=463, cy=67).
 - [ ] 2026-05-21 Wait for user directional correction (left/right/up/down) for fingertip marker.
-- [ ] 2026-05-21 Start local server first in separate terminal tab/session and open preview tab.
-- [ ] 2026-05-21 Commit and push latest changes as requested.
+- [v] 2026-05-21 Start local server first in separate terminal tab/session and open preview tab (http://localhost:5500).
+- [v] 2026-05-21 Commit and push latest changes as requested (commit 131f1f7 to origin/main).
+- [v] 2026-05-21 Start server again in separate terminal tab and open preview tab.
+- [v] 2026-05-21 User confirmed fingertip marker is correct.
+- [v] 2026-05-21 Add hour-circle direction marker based on center-to-fingertip vector and report coords (cx=393, cy=128).
+- [ ] 2026-05-21 Wait for user directional correction for hour-circle marker.
+- [v] 2026-05-21 Apply latest request: red target and resize-to-align while keeping marker coordinates fixed.
+- [ ] 2026-05-21 Wait for user approval of resize result.
+- [ ] 2026-05-21 After approval only: add third circle on outer tick-edge circle and crop image to circular boundary.
+- [v] 2026-05-21 User requested immediate crop: circle boundary at outside end of red dot (applied crop radius 197 from center).
+- [v] 2026-05-21 Remove green fingertip dot, then commit and push (dot removed).
