@@ -1,0 +1,9 @@
+{
+  "name": "celebclock-setup",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "workflow:summary": "node js/runWorkflow.js"
+  }
+}

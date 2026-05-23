@@ -1,57 +1,57 @@
-AI chat history.  for recovery from Codespaces carshes. 
+AI chat history.  for recovery from Codespaces carshes.  
+- The code assistant AI should read this file first thing after recovery!
 
-- Before every action by AI, the AI should put a telegraphic summary here.   
+# Instructions
+
+- Before every action by AI, the AI should put a telegraphic summary here, in following bulleted chckbox and datetime-stamped format:
+
+- [ ] yyyy/mm/dd-hh:mm:  action-summary. 
+
 - These include code changes, git and github actions. calls to we and server etc.   
 - Always save after every edit to this file, so it is preserved after crash. 
-
-Developer's latest prompt (he entered it here because needs to go and will come back later. its a workflow)
-
-read ai chat history md file
-then , while recording your actons,
-1. put a small bright circle on his fingertip location. 
-2.  tell me location coords of that circle in image. 
-3. I will correct you and tell you right left up down till we get it correctly. 
-4. once we have the fingertip, we do a similar correction session (back and forth) with another circle on the hour circle in the direction from the center to the fingertip on the hour circle. 
-5. Once i confirm it correct you tell me how much you think to resize and what it will do to the minute pointed at
-6. Once i confirm you resize
-7. Run the server in a SEPARATE TAB. you keep on overriding the codespaces tab, and then its gone and i have to re-run codeespaces, which of course brings us back to point zero after a crash!!
-
-Updated workflow (2026-05-21, per user correction)
-1. Run server first in a separate terminal tab/session and open site in separate browser tab.
-2. Put a small bright circle on his fingertip location.
-3. Tell location coords of that circle in image.
-4. User gives right/left/up/down corrections until fingertip is correct.
-5. After fingertip is confirmed, do similar correction loop for another circle on the hour circle in the direction from center to fingertip.
-6. Once hour circle is confirmed, estimate resize amount and effect on minute pointed at.
-7. Once confirmed, apply resize.
-
-Updated workflow (2026-05-21, latest)
-1. Keep existing circles fixed in place.
-2. Change confirmed hour-target circle color to red.
-3. Resize image so fingertip aligns to the red target circle.
-4. Wait for user approval that resize worked.
-5. Only after approval: add third circle on outer tick-edge circle and crop image to that circular boundary.
+- Each completed item mark with:
+ - [v] success, [x] cancelled, [-] deferred, [?] needs developer attention.
 
 
-Line format:
-- [ ] timestamp action-summary. 
+# Log
 
-- [v] 2026-05-21 Read latest instructions from this file and begin workflow.
-- [v] 2026-05-21 Inspect project files and image assets to locate fingertip.
-- [v] 2026-05-21 Read page code and add first bright fingertip marker.
-- [v] 2026-05-21 Add first fingertip circle marker to SVG and report coordinates (cx=463, cy=67).
-- [ ] 2026-05-21 Wait for user directional correction (left/right/up/down) for fingertip marker.
-- [v] 2026-05-21 Start local server first in separate terminal tab/session and open preview tab (http://localhost:5500).
-- [v] 2026-05-21 Commit and push latest changes as requested (commit 131f1f7 to origin/main).
-- [v] 2026-05-21 Start server again in separate terminal tab and open preview tab.
-- [v] 2026-05-21 User confirmed fingertip marker is correct.
-- [v] 2026-05-21 Add hour-circle direction marker based on center-to-fingertip vector and report coords (cx=393, cy=128).
-- [ ] 2026-05-21 Wait for user directional correction for hour-circle marker.
-- [v] 2026-05-21 Apply latest request: red target and resize-to-align while keeping marker coordinates fixed.
-- [ ] 2026-05-21 Wait for user approval of resize result.
-- [ ] 2026-05-21 After approval only: add third circle on outer tick-edge circle and crop image to circular boundary.
-- [v] 2026-05-21 User requested immediate crop: circle boundary at outside end of red dot (applied crop radius 197 from center).
-- [v] 2026-05-21 Remove green fingertip dot, then commit and push (dot removed).
-- [v] 2026-05-21 Add celebshot screenshot to README using imgs/celebClockScreenshot.jpg.
-- [v] 2026-05-21 Clarified screenshot filename preference to celebclockscreenshot; update README/path accordingly.
-- [v] 2026-05-21 Commit and push screenshot rename + README path update (commit ae92105).
+- [v]  Add first fingertip circle marker to SVG and report coordinates (cx=463, cy=67).
+- [v]  Start local server first in separate terminal tab/session and open preview tab (http://localhost:5500).
+- [v]  Commit and push latest changes as requested (commit 131f1f7 to origin/main).
+- [v]  Start server again in separate terminal tab and open preview tab.
+- [v]  User confirmed fingertip marker is correct.
+- [v] Add hour-circle direction marker based on center-to-fingertip vector and report coords (cx=393, cy=128).
+- [ ] Wait for user directional correction for hour-circle marker.
+- [v] Apply latest request: red target and resize-to-align while keeping marker coordinates fixed.
+- [v] Wait for user approval of resize result.
+- [v] After approval only: add third circle on outer tick-edge circle and crop image to circular boundary.
+- [v] User requested immediate crop: circle boundary at outside end of red dot (applied crop radius 197 from center).
+- [v] Remove green fingertip dot, then commit and push (dot removed).
+- [v]  Add celebshot screenshot to README using imgs/celebClockScreenshot.jpg.
+- [v]  Clarified screenshot filename preference to celebclockscreenshot; update README/path accordingly.
+- [v]  Commit and push screenshot rename + README path update (commit ae92105).
+- [v]  Wait for new instructions
+- [v] 2026/05/23-20:49: Read chat history and follow last instruction.
+ - [ ] dateAndTimestamp these instructions here. 
+- [ ] see temp.md, (i'll soon update it further but don't wait for that). 
+ - [ ] check in and push to github
+  - [ ] consolidate all readme lists by minute starting at 0.  
+  - [ ] each celeb has a category (art, government, etc.) 
+  - [ ] url column (as a link), 
+  - [ ] and copywrite name and link.  
+  - [ ] If UNKONWN copywrite, then mark it thus. 
+  - [ ] filename (give each a simple filename 1elvis.jpg  etc)
+  - [ ] checkbox if downloaded. We only have the single image for minute 7.
+  - [ ] make a setup folder with .js (nodejs?) that with following modules: 
+    - [ ] ai instructions .md file (for each image put as background in clock, mark fingertip with green circle, get approval from developer or corrections, get next step instructions (default: mark with red circle expected target minute after resizing image.
+    get developer's approval. store results in a data table in the js folder  (js objects and arrays). 
+    - [ ] use ai to create the images for missing minutes, and the resized image, cropping out (with the developer's instructions) unneeded parts of the picture colorizing and correcting so we can use a picture as is.  for the minute. 
+    - [ ] the program itself would be a simple one, choosing one out of set of celebs (and next round without repeating the celebs).
+    - [ ] empty the temp.md
+    - [ ] change the readme to reflect all we said. remove any unnecessary and old instructions. 
+- [ ] commit and push all to github. 
+- [v] 2026/05/23-22:40: Read instruction markdown and execute pending checklist items.
+- [v] 2026/05/23-22:40: Rewrite README with consolidated minute-sorted table and metadata columns.
+- [v] 2026/05/23-22:40: Create setup Node.js scaffolding, AI workflow instructions, and JS data table files.
+- [v] 2026/05/23-22:40: Empty temp.md and remove stale plan content.
+- [ ] 2026/05/23-22:40: Commit and push updates to origin/main.
