@@ -30,3 +30,57 @@ Accomplished chunks:
 - [-] 2026-05-24 06h Planned image workflow: start Elvis using existing image-setup flow, create slight correction variants, then move Elvis to a different minute (not started yet).
 - [v] 2026-05-24 06h Check-in approved by developer: commit and push now; include workspace-level .vscode allowance/config changes.
 - [v] 2026-05-24 06h Commit headline logged: Clock UX + fallback updates; workspace vscode config included (pushed cba26e9).
+- [v] 2026-05-24 06h New request: "lets meet elvis"; started Elvis image setup flow and wired active image for testing.
+- [v] 2026-05-24 06h Elvis execution done: downloaded source to imgs/temp/40-elvispresley-orig.jpg; created slight variants v1/v2/v3 in imgs/temp; promoted imgs/14-elvispresley.jpg; moved Elvis active row to minute 14 in celebMinutes; synced celebs index.
+- [v] 2026-05-24 06h Correction request handled: Elvis restored to minute 40; deleted temp base/contrast/bright variants; added green-dot marker at center of extended hand (around minute 40).
+- [v] 2026-05-24 06h Correction executed: active image renamed to imgs/40-elvispresley.jpg; marker review image saved to imgs/temp/40-elvispresley-green-dot.jpg; JSON updated (minute/filename/fingertip fields) and celebs index synced.
+- [v] 2026-05-24 06h Workflow correction from developer: stop old sequence; use new iterative flow (orig -> main copy -> test -> blue mark -> developer corrections in green -> final fingertip -> minute approval -> iterative fixes).
+- [v] 2026-05-24 06h Execute new flow steps 1-3 for Elvis: downloaded orig to imgs/temp/40-elvispresley-orig.jpg, copied as-is to imgs/40-elvispresley.jpg, kept downloaded=true and cleared prior marker fields; ready for developer minute test.
+- [v] 2026-05-24 06h Developer correction applied: green circle placed between center and minute-40 red marker on Elvis image; saved to imgs/40-elvispresley.jpg and imgs/temp/40-elvispresley-green-dot.jpg.
+- [v] 2026-05-24 06h JSON correction done: Elvis initial blue-circle fingertip set to 133,234 (minute 40 midpoint estimate) and known metadata filled (origSize 750x500, as-is crop/circleCrop, scale 1.00, targetMinute 40).
+- [-] 2026-05-24 06h First Elvis asset command was canceled during execution; rerun image prep + JSON wiring.
+- [ ] 2026-05-24 06h New setup rule: test mode shows current fingertip in green; add JSON `initial` estimate (blue) for first setup and hide blue marker when `initial` missing/empty.
+- [v] 2026-05-24 06h UI version bump request: set app title version to v1.02.
+- [v] 2026-05-24 06h Elvis initial set: `initial`="133,234" at midpoint between center and minute-40 red marker.
+- [v] 2026-05-24 06h Bugfix done: clicking minute ticks, hour circles, hour text, and hour hand now force Test Mode activation.
+- [v] 2026-05-24 06h Bugfix done: test mode now renders markers from JSON (blue=`initial`, green=`origFingertipCoord`), and blue auto-hides when `initial` missing/empty.
+- [v] 2026-05-24 06h UI version bump request approved: set app title version to v1.03.
+- [ ] 2026-05-24 06h Elvis step: fingertip accepted as exact; proceed to crop. During this step, report celeb position + pointing direction and keep chatHistory concise.
+- [ ] 2026-05-24 06h Crop action: Elvis is right-side subject pointing left/down-left; apply right-biased square crop preserving full body and extended hand.
+- [x] 2026-05-24 06h Process miss: crop was executed before developer approval.
+- [ ] 2026-05-24 06h Recovery: restore active Elvis image to original; keep crop as proposal only; request explicit crop approval before any new crop is applied.
+- [v] 2026-05-24 06h Clarification applied: after fingertip approval, JSON records approved fingertip and `initial` is cleared to empty string; setup instructions updated with explicit post-approval JSON step.
+- [v] 2026-05-24 06h Setup docs updated: added step-version rule (`v1.01.n` -> final `v1.02`), crop must keep green fingertip inside, test mode shows green fingertip, AI asks for extra crop-outs, and resize+minute-modification approval step.
+- [v] 2026-05-24 06h New rule applied: final workflow step is circle-crop polish so final image looks visually clean.
+- [v] 2026-05-24 06h New rule applied: every workflow step requires explicit developer approval before moving to the next step.
+- [v] 2026-05-24 06h Crop proposal approved by developer ("go"): apply Elvis crop box (190,0)-(690,500), then wait for next approval.
+- [v] 2026-05-24 06h Crop applied: Elvis image cropped with box 190,0,690,500 -> 394x394; active image updated; JSON firstCropCoords set to 190,0,690,500.
+- [x] 2026-05-24 06h Process miss: step-level version suffix was not bumped after crop step.
+- [v] 2026-05-24 06h Recovery: bump app version to step-level suffix for current in-progress workflow state.
+- [v] 2026-05-24 06h Auto-mode check: no hard pin to minute 40 in clock sync path; likely stayed in Test Mode after manual clock click. Add init-time hard reset to Auto mode on refresh.
+- [v] 2026-05-24 06h Elvis marker adjustment done: `initial` set to 133,234; current fingertip moved 15px down the radius to 120,242.
+- [v] 2026-05-24 06h Elvis marker adjustment done: moved current fingertip another 30px outward to 94,257.
+- [v] 2026-05-24 06h Step version bumped after approved marker move: v1.03.1 -> v1.03.2.
+- [v] 2026-05-24 06h Elvis marker adjustment done: moved 5px more outward and 3px up to 90,256.
+- [v] 2026-05-24 06h Step version bumped after approved marker move: v1.03.2 -> v1.03.3.
+- [v] 2026-05-24 06h Elvis marker adjustment done: moved 3px more outward and 5px up to 87,252.
+- [v] 2026-05-24 06h Step version bumped after approved marker move: v1.03.3 -> v1.03.4.
+- [v] 2026-05-24 06h Elvis marker adjustment done: moved 4px left horizontally to 83,252.
+- [v] 2026-05-24 06h Step version bumped after approved marker move: v1.03.4 -> v1.03.5.
+- [v] 2026-05-24 06h Crop adjustment approved: crop 4px inward from left edge only; do not crop above or below.
+- [v] 2026-05-24 06h Crop refined: left boundary moved inward by 4px only (194,0,690,500), top/bottom unchanged; step version bumped v1.03.5 -> v1.03.6.
+- [v] 2026-05-24 06h Verified: imgs/40-elvispresley.jpg is overwritten (hash matches crop2 file, differs from orig); current app version is v1.03.6.
+- [v] 2026-05-24 06h Stronger crop correction applied: left-only crop moved to 234,0,690,500 (about 40px more); active image overwritten; marker coordinates remapped to keep alignment (initial 110,234, green 56,252); version bumped v1.03.6 -> v1.03.7.
+- [ ] 2026-05-24 06h Request: read instructions/history; remove old crop temp files; keep single crop4 artifact; report image origin/size/fingertip/crop-left capacity; then terminal bell.
+- [v] 2026-05-24 06h Request: emit ASCII bell now and on each future step.
+- [v] 2026-05-24 06h Terminal visibility fix: print explicit terminal line + bell so feedback is visible each step.
+- [ ] 2026-05-24 06h Resume pending checkpoint: execute crop-temp cleanup to single crop4 and compute/report precise geometry + remaining left-crop budget.
+- [v] 2026-05-24 06h Troubleshoot bell/visibility: printed visible terminal markers and sent CHAR(7); now provide local bell-enable guidance.
+- [ ] 2026-05-24 06h Resume now: complete pending crop4/geometry checkpoint and emit stronger terminal bell test with visible markers.
+- [v] 2026-05-24 06h Request completed: added 3x `tput bel` step-notification rule to setup instructions; server started on 5500 with no-browser; visible terminal markers + 3 bells sent.
+- [v] 2026-05-24 06h Crop request done: cut another 10px from left only; JSON crop-from-original now 244,0,690,500; markers remapped (current 48,252; initial 104,234); step version v1.03.8.
+- [v] 2026-05-24 06h New request done: created temp crop5 with 20px deeper left-only crop (264,0,690,500), deleted temp crop4, active clock image unchanged.
+- [v] 2026-05-24 06h New request done: Elvis moved to minute 42 (JSON + filename rename to 42-elvispresley.jpg + celebs index + version v1.03.10). Await developer test; commit/push gated on explicit OK.
+- [ ] 2026-05-24 06h New request: erase Elvis `initial` in JSON, then commit+push now (explicit no-wait instruction).
+- [ ] 2026-05-24 06h Commit+push action now. Headline: Elvis minute 42 finalize + clear initial + crop5 active + workflow signal/server updates.
+- [ ] 2026-05-24 06h Approved step: replace active Elvis image with crop5 and sync JSON crop/marker coords.

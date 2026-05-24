@@ -94,6 +94,28 @@ body {
   clip-path: circle(var(--img-crop-r) at 50% 50%);
 }
 
+.fingertip-marker {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid;
+  pointer-events: none;
+  display: none;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+}
+
+#fingertip-initial-marker {
+  border-color: #2c7dff;
+  box-shadow: 0 0 6px rgba(44, 125, 255, 0.8);
+}
+
+#fingertip-current-marker {
+  border-color: #00d23f;
+  box-shadow: 0 0 6px rgba(0, 210, 63, 0.8);
+}
+
 #celeb-img {
   width: calc(var(--img-crop-r) * 2);
   height: calc(var(--img-crop-r) * 2);
@@ -253,12 +275,14 @@ body {
 </head>
 <body>
 
-<div class="title">CelebClock <span class="version">v1.01</span></div>
+<div class="title">CelebClock <span class="version">v1.03.10</span></div>
 <div id="mode-banner">Minute Mode - click any tick or hour numeral</div>
 
 <div class="clock-wrap">
   <div id="celeb-wrap">
     <img id="celeb-img" src="" alt="Celebrity" />
+    <div id="fingertip-initial-marker" class="fingertip-marker"></div>
+    <div id="fingertip-current-marker" class="fingertip-marker"></div>
   </div>
   <div id="celeb-name-label"></div>
 
@@ -309,6 +333,8 @@ let hourMode = false;
 let isTestMode = false;
 let clockTimerId = null;
 let celebMinuteRows = [];
+let activeMinuteRow = null;
+const MARKER_BASE_IMAGE_SIZE = 394;
 
 function polar(r, angleDeg) {
   const rad = (angleDeg - 90) * Math.PI / 180;
@@ -376,21 +402,26 @@ function drawHourGroups() {
       'text-anchor': 'middle',
       'dominant-baseline': 'central',
       fill: 'var(--white)',
-      style: "font-family:'Bebas Neue',sans-serif; font-size:15px; pointer-events:none"
+      style: "font-family:'Bebas Neue',sans-serif; font-size:15px; pointer-events:auto; cursor:pointer"
     });
     txt.textContent = h;
+    txt.addEventListener('click', () => onHourCircleClick(h));
     g.appendChild(txt);
   }
 }
 
+function activateTestModeForManualSet() {
+  setTestMode(true);
+}
+
 function onTickClick(m) {
-  if (!isTestMode) setTestMode(true);
+  activateTestModeForManualSet();
   if (hourMode) return;
   setMinute(m);
 }
 
 function onHourCircleClick(h) {
-  if (!isTestMode) setTestMode(true);
+  activateTestModeForManualSet();
   if (hourMode) {
     setHour(h);
     exitHourMode();
@@ -400,7 +431,7 @@ function onHourCircleClick(h) {
 }
 
 document.getElementById('hour-hand').addEventListener('click', () => {
-  if (!isTestMode) setTestMode(true);
+  activateTestModeForManualSet();
   if (!hourMode) enterHourMode();
 });
 
@@ -489,11 +520,50 @@ function setStatus(msg, cls) {
   el.className = 'status' + (cls ? ' ' + cls : '');
 }
 
+function hideFingertipMarkers() {
+  document.getElementById('fingertip-initial-marker').style.display = 'none';
+  document.getElementById('fingertip-current-marker').style.display = 'none';
+}
+
+function parseCoord(value) {
+  if (!value || typeof value !== 'string' || !value.includes(',')) return null;
+  const [xRaw, yRaw] = value.split(',');
+  const x = Number(xRaw.trim());
+  const y = Number(yRaw.trim());
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+  return { x, y };
+}
+
+function drawFingertipMarker(markerId, coord) {
+  const marker = document.getElementById(markerId);
+  const img = document.getElementById('celeb-img');
+  if (!coord || !img.clientWidth || !img.clientHeight) {
+    marker.style.display = 'none';
+    return;
+  }
+  const scaleX = img.clientWidth / MARKER_BASE_IMAGE_SIZE;
+  const scaleY = img.clientHeight / MARKER_BASE_IMAGE_SIZE;
+  const left = (img.offsetLeft + (coord.x * scaleX));
+  const top = (img.offsetTop + (coord.y * scaleY));
+  marker.style.left = `${left}px`;
+  marker.style.top = `${top}px`;
+  marker.style.display = 'block';
+}
+
+function renderFingertipMarkers(row) {
+  if (!isTestMode || !row) {
+    hideFingertipMarkers();
+    return;
+  }
+  drawFingertipMarker('fingertip-initial-marker', parseCoord(row.initial));
+  drawFingertipMarker('fingertip-current-marker', parseCoord(row.origFingertipCoord));
+}
+
 function loadImageSrc(src, name) {
   const img = document.getElementById('celeb-img');
   const lbl = document.getElementById('celeb-name-label');
-  img.onerror = () => { img.style.display = 'none'; setStatus('Image failed to load.', 'err'); };
-  img.onload  = () => { img.style.display = 'block'; };
+  img.onerror = () => { img.style.display = 'none'; hideFingertipMarkers(); setStatus('Image failed to load.', 'err'); };
+  img.onload  = () => { img.style.display = 'block'; renderFingertipMarkers(activeMinuteRow); };
   img.src = src;
   lbl.dataset.celeb = name;
 }
@@ -574,11 +644,14 @@ function loadImageForCurrentMinute() {
 
   const lbl = document.getElementById('celeb-name-label');
   if (!row) {
+    activeMinuteRow = null;
+    hideFingertipMarkers();
     lbl.textContent = 'No minute image set.';
     setStatus('No minute image set.', '');
     loadImageSrc(FALLBACK_IMAGE_SRC, FALLBACK_IMAGE_NAME);
     return;
   }
+  activeMinuteRow = row;
   lbl.textContent   = `${row.celeb}  |  min ${String(curMinute).padStart(2, '0')}`;
   lbl.dataset.celeb = row.celeb;
   loadImageSrc(`imgs/${row.filename}`, row.celeb || 'Celebrity');
@@ -648,7 +721,9 @@ function setTestMode(enabled) {
   if (enabled) {
     stopRealtimeClock();
     setStatus('Test mode: enter time and press Apply', 'ok');
+    renderFingertipMarkers(activeMinuteRow);
   } else {
+    hideFingertipMarkers();
     lastSyncMinute = -1;
     startRealtimeClock();
   }
@@ -669,7 +744,8 @@ async function initApp() {
   const now = new Date();
   const h = now.getHours() % 12 || 12;
   buildSchedule(h, now.getMinutes());
-  startRealtimeClock(); // syncs time + triggers first image load
+  // Hard reset to Auto mode on refresh to avoid any stale Test-mode UI state.
+  setTestMode(false);
 }
 
 initApp();
