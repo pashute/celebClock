@@ -24,6 +24,8 @@ Bottom line:  EVERYTHING SHOULD BE RECORDED AND SAVED.
 
 #Checking in
 
+DO NOT commit or push until developer explicitly says "ok" or "check in" or "push" — UNLESS an automated test suite is in place and all tests pass.
+
 When committing and pushing use a commit message with telegraphic text to discribe all the changes in markdown. Give it a headline (cosmetics: changed a -> b)  etc. 
 
 Give a short list of files affected, in the commit message. 

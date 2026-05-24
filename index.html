@@ -48,6 +48,13 @@ body {
   text-shadow: 0 0 30px rgba(200, 168, 75, 0.3);
 }
 
+.title .version {
+  font-size: 0.44em;
+  letter-spacing: 0.08em;
+  margin-left: 10px;
+  opacity: 0.9;
+}
+
 #mode-banner {
   font-size: 0.65rem;
   letter-spacing: 0.18em;
@@ -246,7 +253,7 @@ body {
 </head>
 <body>
 
-<div class="title">CelebClock</div>
+<div class="title">CelebClock <span class="version">v1.01</span></div>
 <div id="mode-banner">Minute Mode - click any tick or hour numeral</div>
 
 <div class="clock-wrap">
@@ -377,11 +384,13 @@ function drawHourGroups() {
 }
 
 function onTickClick(m) {
+  if (!isTestMode) setTestMode(true);
   if (hourMode) return;
   setMinute(m);
 }
 
 function onHourCircleClick(h) {
+  if (!isTestMode) setTestMode(true);
   if (hourMode) {
     setHour(h);
     exitHourMode();
@@ -391,6 +400,7 @@ function onHourCircleClick(h) {
 }
 
 document.getElementById('hour-hand').addEventListener('click', () => {
+  if (!isTestMode) setTestMode(true);
   if (!hourMode) enterHourMode();
 });
 
@@ -515,10 +525,17 @@ function buildMinuteQueues() {
   }
 }
 
-// Picks next row for `minute`; fallbacks: -3 min, then +2 min, then null (Uncle Sam).
+// Picks next row for `minute`; fallbacks: -1/-2/-3 min, then +1/+2 min, then null (Uncle Sam).
 // `qIdx` is a shared pointer map so cycling across a schedule works correctly.
 function pickRowForMinute(minute, qIdx) {
-  for (const m of [minute, (minute + 57) % 60, (minute + 2) % 60]) {
+  for (const m of [
+    minute,
+    (minute + 59) % 60,
+    (minute + 58) % 60,
+    (minute + 57) % 60,
+    (minute + 1) % 60,
+    (minute + 2) % 60
+  ]) {
     const q = minuteQueues[m];
     if (q && q.length) {
       if (qIdx[m] === undefined) qIdx[m] = 0;

@@ -8,6 +8,7 @@
         "set": true,
         "lsof": true,
         "true": true,
-        "\"$BROWSER\"": true
+        "\"$BROWSER\"": true,
+        "npx live-server": true
     }
 }
