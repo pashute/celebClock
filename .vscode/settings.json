@@ -4,6 +4,7 @@
         "git add": true,
         "git commit": true,
         "git push": true,
-        "git rev-parse": true
+        "git rev-parse": true,
+        "set": true
     }
 }

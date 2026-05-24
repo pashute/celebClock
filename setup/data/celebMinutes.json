@@ -9,6 +9,7 @@
     "filename": "00-unclesam.png",
     "downloaded": false
   },
+
   {
     "minute": 0,
     "celeb": "Marilyn Monroe",
@@ -19,6 +20,7 @@
     "filename": "00-marilynmonroe.jpg",
     "downloaded": false
   },
+
   {
     "minute": 0,
     "celeb": "Jackie Chan (2nd)",
@@ -29,6 +31,7 @@
     "filename": "00-jackiechan2.jpg",
     "downloaded": false
   },
+
   {
     "minute": 7,
     "celeb": "Muhammad Ali",
@@ -39,6 +42,7 @@
     "filename": "07-muhammadali.jpg",
     "downloaded": true
   },
+
   {
     "minute": 8,
     "celeb": "David Bowie",
@@ -49,6 +53,7 @@
     "filename": "08-davidbowie.jpg",
     "downloaded": false
   },
+
   {
     "minute": 9,
     "celeb": "Meryl Streep",
@@ -59,6 +64,7 @@
     "filename": "09-merylstreep.jpg",
     "downloaded": false
   },
+
   {
     "minute": 10,
     "celeb": "Denzel Washington",
@@ -69,6 +75,7 @@
     "filename": "10-denzelwashington.jpg",
     "downloaded": false
   },
+
   {
     "minute": 10,
     "celeb": "Barack Obama (2nd)",
@@ -79,6 +86,7 @@
     "filename": "10-barackobama2.jpg",
     "downloaded": false
   },
+
   {
     "minute": 13,
     "celeb": "Denzel Washington (2nd)",
@@ -89,6 +97,7 @@
     "filename": "13-denzelwashington2.jpg",
     "downloaded": false
   },
+
   {
     "minute": 15,
     "celeb": "Donald Trump",
@@ -99,6 +108,7 @@
     "filename": "15-donaldtrump.jpg",
     "downloaded": false
   },
+
   {
     "minute": 16,
     "celeb": "Audrey Hepburn",
@@ -109,6 +119,7 @@
     "filename": "16-audreyhepburn.jpg",
     "downloaded": false
   },
+
   {
     "minute": 18,
     "celeb": "Hillary Clinton",
@@ -119,6 +130,7 @@
     "filename": "18-hillaryclinton.jpg",
     "downloaded": false
   },
+
   {
     "minute": 19,
     "celeb": "Beyonce",
@@ -129,6 +141,7 @@
     "filename": "19-beyonce.jpg",
     "downloaded": false
   },
+
   {
     "minute": 30,
     "celeb": "Barack Obama",
@@ -139,6 +152,7 @@
     "filename": "30-barackobama.gif",
     "downloaded": false
   },
+
   {
     "minute": 40,
     "celeb": "Elvis Presley",
@@ -149,6 +163,7 @@
     "filename": "40-elvispresley.jpg",
     "downloaded": false
   },
+
   {
     "minute": 45,
     "celeb": "Cate Blanchett",
@@ -159,6 +174,7 @@
     "filename": "45-cateblanchett.jpg",
     "downloaded": false
   },
+
   {
     "minute": 45,
     "celeb": "ET",
