@@ -1,17 +1,6 @@
-AI chat history.  for recovery from Codespaces carshes.  
-- The code assistant AI should read this file first thing after recovery!
+AI chat history.  for recovery from Codespaces crashes.  
 
-# Instructions
-
-- Before every action by AI, the AI should put a telegraphic summary here, in following bulleted chckbox and datetime-stamped format:
-
-- [ ] yyyy/mm/dd-hh:mm:  action-summary. 
-
-- These include code changes, git and github actions. calls to we and server etc.   
-- Always save after every edit to this file, so it is preserved after crash. 
-- Each completed item mark with:
- - [v] success, [x] cancelled, [-] deferred, [?] needs developer attention.
-
+- This file is for use after reading the instructions in `ai/aiDevInstructions.md`
 
 # Log
 
@@ -61,3 +50,6 @@ AI chat history.  for recovery from Codespaces carshes.
 - [v] 2026/05/24-00:19: Logged request to split README/dev docs, create redundant celebs JSON, and verify old minute knowledge coverage.
 - [v] 2026/05/24-00:24: Rewrote README app-first, moved dev notes to ai/development.md, added setup/data/celebs.json, spaced celebMinutes.json entries, and verified old minute mappings remain in git history.
 - [v] 2026/05/24-00:28: Merged legacy README minute mappings into current setup/data/celebMinutes.json and regenerated setup/data/celebs.json with consolidated comma-separated minute lists.
+- [v] 2026/05/24-00:56: Read ai/aiDevInstructions.md and switched active logging to ai/chatHistory.md.
+- [v] 2026/05/24-00:56: Verified latest completed commit and push: 674f0fb to origin/main (legacy minute mapping merge).
+- [v] 2026/05/24-00:56: Prepare check-in headline: docs/log rename (old instruction/history filenames -> new names), then commit and push.
