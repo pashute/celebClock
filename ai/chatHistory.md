@@ -29,3 +29,4 @@ Accomplished chunks:
 - [v] 2026-05-24 06h Instruction captured: on load create current-hour list; at minute 00 create next-hour list; when multiple celebs exist for one minute, cycle them.
 - [-] 2026-05-24 06h Planned image workflow: start Elvis using existing image-setup flow, create slight correction variants, then move Elvis to a different minute (not started yet).
 - [v] 2026-05-24 06h Check-in approved by developer: commit and push now; include workspace-level .vscode allowance/config changes.
+- [v] 2026-05-24 06h Commit headline logged: Clock UX + fallback updates; workspace vscode config included (pushed cba26e9).
