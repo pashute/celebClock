@@ -237,21 +237,6 @@ body {
 .status.ok { color: #6dbf67; }
 .status.err { color: #e05555; }
 
-#ai-result {
-  margin-top: 14px;
-  background: #080810;
-  border: 1px solid #1e1e2e;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: 0.68rem;
-  line-height: 1.7;
-  color: #aaaabe;
-  white-space: pre-wrap;
-  max-height: 280px;
-  overflow-y: auto;
-  display: none;
-}
-
 @media (max-width: 560px) {
   :root { --cs: 340px; }
   #celeb-img { width: 194px; height: 194px; }
@@ -289,28 +274,15 @@ body {
 </div>
 
 <div class="panel">
-  <h3>Load Celebrity Image</h3>
+  <h3>Clock Controls</h3>
   <div class="row">
-    <input type="text" id="inp-url" placeholder="Image URL (https://...)" />
-  </div>
-  <div class="row">
-    <button class="btn" id="btn-load">Load</button>
     <button class="btn" id="btn-test-mode" type="button">Test Mode: Off</button>
   </div>
   <div class="row" id="test-time-row" style="display:none;">
     <input type="text" id="inp-test-time" placeholder="HH:MM or minute" style="max-width:180px;" />
     <button class="btn" id="btn-apply-test" type="button">Apply Time</button>
   </div>
-  <div class="row">
-    <input type="file" id="inp-file" accept="image/*" />
-  </div>
-  <div class="row">
-    <input type="text" id="inp-name" placeholder="Celebrity name" value="Muhammad Ali" />
-    <input type="number" id="inp-min" placeholder="Override minute 0-59" min="0" max="59" style="width:130px;flex:none"/>
-    <button class="btn" id="btn-ai" disabled>AI Adjust</button>
-  </div>
-  <div class="status" id="status-msg">Load an image to get started</div>
-  <div id="ai-result"></div>
+  <div class="status" id="status-msg">Auto mode active</div>
 </div>
 
 <script>
@@ -321,13 +293,15 @@ const R_TICK_HI = 204;
 const R_HOUR_C = 188;
 const R_HOUR_CR = 18;
 const R_HAND = 130;
+const FALLBACK_IMAGE_SRC = 'imgs/00-unclesam.png';
+const FALLBACK_IMAGE_NAME = 'Uncle Sam';
 
 let curHour = 12;
 let curMinute = 0;
 let hourMode = false;
-let loadedSrc = null;
 let isTestMode = false;
 let clockTimerId = null;
+let celebMinuteRows = [];
 
 function polar(r, angleDeg) {
   const rad = (angleDeg - 90) * Math.PI / 180;
@@ -496,9 +470,7 @@ function updateClock() {
 }
 
 function onMinuteChanged(m) {
-  const lbl = document.getElementById('celeb-name-label');
-  const base = lbl.dataset.celeb || '';
-  if (base) lbl.textContent = `${base}  |  min ${String(m).padStart(2, '0')}`;
+  loadImageForCurrentMinute();
 }
 
 function setStatus(msg, cls) {
@@ -507,230 +479,183 @@ function setStatus(msg, cls) {
   el.className = 'status' + (cls ? ' ' + cls : '');
 }
 
-function loadImage(src, name, overrideMin) {
+function loadImageSrc(src, name) {
   const img = document.getElementById('celeb-img');
   const lbl = document.getElementById('celeb-name-label');
-
-  img.onerror = () => {
-    setStatus('Image failed to load. Try a different URL or file.', 'err');
-    img.style.display = 'none';
-  };
-
-  img.onload = () => {
-    img.style.display = 'block';
-    setStatus('Loaded: ' + name, 'ok');
-    document.getElementById('btn-ai').disabled = false;
-  };
-
-  loadedSrc = src;
+  img.onerror = () => { img.style.display = 'none'; setStatus('Image failed to load.', 'err'); };
+  img.onload  = () => { img.style.display = 'block'; };
   img.src = src;
   lbl.dataset.celeb = name;
-  lbl.textContent = name;
+}
 
-  if (overrideMin !== null && overrideMin !== undefined && !Number.isNaN(overrideMin)) {
-    setMinute(overrideMin);
+// ─── Schedule / image routing ─────────────────────────────────────────────────
+let minuteQueues    = {};   // minute -> [usable rows] (preferred celeb first)
+let schedule        = [];   // 120-slot precomputed [{minute, row|null}]
+let scheduleBuiltAt = null; // {h, m} when schedule was last built
+let lastSyncMinute  = -1;
+
+const PREFERRED_CELEB_BY_MINUTE = { 0: 'Uncle Sam', 5: 'David Bowie', 8: 'Muhammad Ali' };
+
+function isUsableRow(row) {
+  return Boolean(row && row.filename && (row.isDownloaded === true || row.downloaded === true));
+}
+
+function buildMinuteQueues() {
+  minuteQueues = {};
+  for (const row of celebMinuteRows) {
+    if (!isUsableRow(row)) continue;
+    const m = Number(row.minute);
+    if (!minuteQueues[m]) minuteQueues[m] = [];
+    minuteQueues[m].push(row);
+  }
+  // Sort each queue so preferred celeb comes first.
+  for (const [m, rows] of Object.entries(minuteQueues)) {
+    const pref = PREFERRED_CELEB_BY_MINUTE[Number(m)] || '';
+    if (pref) rows.sort((a, b) => (b.celeb === pref ? 1 : 0) - (a.celeb === pref ? 1 : 0));
   }
 }
 
-document.getElementById('btn-load').addEventListener('click', () => {
-  const urlVal = document.getElementById('inp-url').value.trim();
-  const name = document.getElementById('inp-name').value.trim() || 'Celebrity';
-  const min = parseInt(document.getElementById('inp-min').value, 10);
-  const src = (loadedSrc && loadedSrc.startsWith('data:')) ? loadedSrc : urlVal;
+// Picks next row for `minute`; fallbacks: -3 min, then +2 min, then null (Uncle Sam).
+// `qIdx` is a shared pointer map so cycling across a schedule works correctly.
+function pickRowForMinute(minute, qIdx) {
+  for (const m of [minute, (minute + 57) % 60, (minute + 2) % 60]) {
+    const q = minuteQueues[m];
+    if (q && q.length) {
+      if (qIdx[m] === undefined) qIdx[m] = 0;
+      const row = q[qIdx[m] % q.length];
+      qIdx[m]++;
+      return row;
+    }
+  }
+  return null;
+}
 
-  if (!src) {
-    setStatus('Please enter an image URL or pick a file', 'err');
+function buildSchedule(fromHour, fromMinute) {
+  buildMinuteQueues();
+  const qIdx = {};
+  schedule = [];
+  for (let i = 0; i < 120; i++) {
+    const m = (fromMinute + i) % 60;
+    schedule.push({ minute: m, row: pickRowForMinute(m, qIdx) });
+  }
+  scheduleBuiltAt = { h: fromHour, m: fromMinute };
+}
+
+function getScheduledRow(hour, minute) {
+  if (!schedule.length || !scheduleBuiltAt) return null;
+  const builtTotal = scheduleBuiltAt.h * 60 + scheduleBuiltAt.m;
+  const curTotal   = hour * 60 + minute;
+  const offset = (curTotal - builtTotal + 720) % 720;
+  if (offset >= 120) return null;
+  return (schedule[offset] || {}).row || null;
+}
+
+function loadImageForCurrentMinute() {
+  // Use schedule slot; fall back to fresh pick if outside window (e.g. test mode).
+  let row = getScheduledRow(curHour, curMinute);
+  if (!row && celebMinuteRows.length) row = pickRowForMinute(curMinute, {});
+
+  const lbl = document.getElementById('celeb-name-label');
+  if (!row) {
+    lbl.textContent = 'No minute image set.';
+    setStatus('No minute image set.', '');
+    loadImageSrc(FALLBACK_IMAGE_SRC, FALLBACK_IMAGE_NAME);
     return;
   }
-
-  setStatus('Loading image...', '');
-  loadImage(src, name, Number.isNaN(min) ? null : min);
-});
-
-document.getElementById('inp-file').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const name = document.getElementById('inp-name').value.trim() || file.name.replace(/[.][^.]+$/, '');
-  const min = parseInt(document.getElementById('inp-min').value, 10);
-  const reader = new FileReader();
-
-  reader.onload = (ev) => {
-    loadedSrc = ev.target.result;
-    document.getElementById('inp-url').value = '(local file: ' + file.name + ')';
-    loadImage(loadedSrc, name, Number.isNaN(min) ? null : min);
-  };
-
-  reader.readAsDataURL(file);
-});
-
-document.getElementById('btn-ai').addEventListener('click', () => {
-  const minute = parseInt(document.getElementById('inp-min').value, 10);
-  if (Number.isNaN(minute) || minute < 0 || minute > 59) {
-    setStatus('Enter a target minute 0-59 first', 'err');
-    return;
-  }
-
-  const angle = minute * 6;
-  const hEquiv = Math.round(minute / 5) || 12;
-  const name = document.getElementById('inp-name').value.trim() || 'Celebrity';
-  const box = document.getElementById('ai-result');
-
-  box.style.display = 'block';
-  box.textContent =
-    `${name} -> minute ${minute} (${angle} deg)\n\n` +
-    `AI placeholder: connect your model API here to generate pose-adjust instructions for ${hEquiv} o'clock.`;
-  setStatus('AI placeholder generated', 'ok');
-});
+  lbl.textContent   = `${row.celeb}  |  min ${String(curMinute).padStart(2, '0')}`;
+  lbl.dataset.celeb = row.celeb;
+  loadImageSrc(`imgs/${row.filename}`, row.celeb || 'Celebrity');
+  setStatus('');
+}
 
 function syncToRealTime() {
   if (isTestMode) return;
   const now = new Date();
-  curHour = now.getHours() % 12 || 12;
-  curMinute = now.getMinutes();
+  const newHour   = now.getHours() % 12 || 12;
+  const newMinute = now.getMinutes();
+  const minuteChanged = newMinute !== lastSyncMinute;
+  curHour   = newHour;
+  curMinute = newMinute;
   updateClock();
+  if (minuteChanged) {
+    lastSyncMinute = newMinute;
+    // Rebuild 2-hour schedule every time clock reaches 12:00.
+    if (newHour === 12 && newMinute === 0 && schedule.length) buildSchedule(12, 0);
+    loadImageForCurrentMinute();
+  }
 }
 
 function startRealtimeClock() {
   stopRealtimeClock();
   syncToRealTime();
-
-  // Align updates to minute boundaries, then tick every 60s.
   const now = new Date();
-  const msToNextMinute = ((60 - now.getSeconds()) * 1000) - now.getMilliseconds();
+  const msToNext = ((60 - now.getSeconds()) * 1000) - now.getMilliseconds();
   clockTimerId = setTimeout(() => {
     syncToRealTime();
     clockTimerId = setInterval(syncToRealTime, 60000);
-  }, Math.max(1, msToNextMinute));
+  }, Math.max(1, msToNext));
 }
 
 function stopRealtimeClock() {
-  if (clockTimerId) {
-    clearTimeout(clockTimerId);
-    clearInterval(clockTimerId);
-    clockTimerId = null;
-  }
+  if (clockTimerId) { clearTimeout(clockTimerId); clearInterval(clockTimerId); clockTimerId = null; }
 }
 
 function applyTestTimeInput() {
   const raw = document.getElementById('inp-test-time').value.trim();
-  if (!raw) {
-    setStatus('Enter HH:MM or minute', 'err');
-    return;
-  }
-
-  let nextHour = curHour;
-  let nextMinute = curMinute;
-
+  if (!raw) { setStatus('Enter HH:MM or minute', 'err'); return; }
+  let nextHour = curHour, nextMinute = curMinute;
   if (raw.includes(':')) {
-    const [h, m] = raw.split(':');
-    nextHour = Number(h);
-    nextMinute = Number(m);
+    const parts = raw.split(':');
+    nextHour = Number(parts[0]); nextMinute = Number(parts[1]);
   } else {
     const digits = raw.replace(/\D/g, '');
-    if (!digits) {
-      setStatus('Invalid test time', 'err');
-      return;
-    }
-    if (digits.length <= 2) {
-      nextMinute = Number(digits);
-    } else {
-      const h = digits.slice(0, digits.length - 2);
-      const m = digits.slice(-2);
-      nextHour = Number(h);
-      nextMinute = Number(m);
-    }
+    if (!digits) { setStatus('Invalid test time', 'err'); return; }
+    nextMinute = digits.length <= 2 ? Number(digits) : Number(digits.slice(-2));
+    if (digits.length > 2) nextHour = Number(digits.slice(0, digits.length - 2));
   }
-
   if (!Number.isFinite(nextHour) || !Number.isFinite(nextMinute) || nextMinute < 0 || nextMinute > 59) {
-    setStatus('Invalid test time', 'err');
-    return;
+    setStatus('Invalid test time', 'err'); return;
   }
-
-  nextHour = ((nextHour % 12) + 12) % 12 || 12;
-  setHour(nextHour);
-  setMinute(nextMinute);
-  setStatus(`Test time set: ${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')}`, 'ok');
+  nextHour  = ((nextHour % 12) + 12) % 12 || 12;
+  curHour   = nextHour;
+  curMinute = nextMinute;
+  updateClock();
+  loadImageForCurrentMinute();
+  setStatus(`Test time: ${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')}`, 'ok');
 }
 
 function setTestMode(enabled) {
   isTestMode = enabled;
-  const row = document.getElementById('test-time-row');
-  const btn = document.getElementById('btn-test-mode');
-
-  row.style.display = enabled ? 'flex' : 'none';
-  btn.textContent = enabled ? 'Test Mode: On' : 'Test Mode: Off';
-
+  document.getElementById('test-time-row').style.display  = enabled ? 'flex' : 'none';
+  document.getElementById('btn-test-mode').textContent    = enabled ? 'Test Mode: On' : 'Test Mode: Off';
   if (enabled) {
     stopRealtimeClock();
-    setStatus('Test mode enabled: enter time and click Apply Time', 'ok');
+    setStatus('Test mode: enter time and press Apply', 'ok');
   } else {
+    lastSyncMinute = -1;
     startRealtimeClock();
-    setStatus('Returned to realtime clock', 'ok');
   }
 }
 
-document.getElementById('btn-test-mode').addEventListener('click', () => {
-  setTestMode(!isTestMode);
-});
-
+document.getElementById('btn-test-mode').addEventListener('click', () => setTestMode(!isTestMode));
 document.getElementById('btn-apply-test').addEventListener('click', applyTestTimeInput);
-
-document.getElementById('inp-test-time').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    applyTestTimeInput();
-  }
-});
+document.getElementById('inp-test-time').addEventListener('keydown', (e) => { if (e.key === 'Enter') applyTestTimeInput(); });
 
 drawTicks();
 drawHourGroups();
-startRealtimeClock();
 
-const START_MINUTE = 5;
-const START_INDEX = 0;
-const PREFERRED_CELEB_BY_MINUTE = {
-  5: 'David Bowie',
-  9: 'Muhammad Ali'
-};
-
-async function loadStartupFromMinute(minute, index) {
-  document.getElementById('inp-min').value = String(minute).padStart(2, '0');
-
+async function initApp() {
   try {
     const res = await fetch('setup/data/celebMinutes.json');
-    if (!res.ok) throw new Error('startup json fetch failed');
-    const rows = await res.json();
-
-    const candidates = rows.filter((r) => Number(r.minute) === minute);
-    if (!candidates.length) throw new Error('no minute candidates');
-
-    const preferred = PREFERRED_CELEB_BY_MINUTE[minute];
-    candidates.sort((a, b) => {
-      const aPreferred = preferred && a.celeb === preferred ? 1 : 0;
-      const bPreferred = preferred && b.celeb === preferred ? 1 : 0;
-      return bPreferred - aPreferred;
-    });
-
-    const pick = candidates[index] || candidates[0];
-    const src = pick.filename ? `imgs/${pick.filename}` : pick.sourceUrl;
-    const name = pick.celeb || 'Celebrity';
-
-    if (!src) throw new Error('empty startup source');
-
-    document.getElementById('inp-url').value = src;
-    document.getElementById('inp-name').value = name;
-    loadImage(src, name, minute);
-    return;
-  } catch (err) {
-    // Fallback keeps app usable if JSON fetch/select fails.
-    const fallbackSrc = 'imgs/05-davidbowie.jpg';
-    document.getElementById('inp-url').value = fallbackSrc;
-    document.getElementById('inp-name').value = 'David Bowie';
-    loadImage(fallbackSrc, 'David Bowie', minute);
-  }
+    if (res.ok) celebMinuteRows = await res.json();
+  } catch (e) { /* Uncle Sam shown for all minutes until data loads */ }
+  const now = new Date();
+  const h = now.getHours() % 12 || 12;
+  buildSchedule(h, now.getMinutes());
+  startRealtimeClock(); // syncs time + triggers first image load
 }
 
-loadStartupFromMinute(START_MINUTE, START_INDEX);
+initApp();
 </script>
 </body>
 </html>

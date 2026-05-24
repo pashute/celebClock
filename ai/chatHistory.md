@@ -1,92 +1,18 @@
-AI chat history.  for recovery from Codespaces crashes.  
+AI chat history (ultra-telegraphic, approx-hour timestamps)
 
-- This file is for use after reading the instructions in `ai/aiDevInstructions.md`
+Rule:
+- [v] One headline may cover several completed items.
 
-# Log
-
-- [v]  Add first fingertip circle marker to SVG and report coordinates (cx=463, cy=67).
-- [v]  Start local server first in separate terminal tab/session and open preview tab (http://localhost:5500).
-- [v]  Commit and push latest changes as requested (commit 131f1f7 to origin/main).
-- [v]  Start server again in separate terminal tab and open preview tab.
-- [v]  User confirmed fingertip marker is correct.
-- [v] Add hour-circle direction marker based on center-to-fingertip vector and report coords (cx=393, cy=128).
-- [ ] Wait for user directional correction for hour-circle marker.
-- [v] Apply latest request: red target and resize-to-align while keeping marker coordinates fixed.
-- [v] Wait for user approval of resize result.
-- [v] After approval only: add third circle on outer tick-edge circle and crop image to circular boundary.
-- [v] User requested immediate crop: circle boundary at outside end of red dot (applied crop radius 197 from center).
-- [v] Remove green fingertip dot, then commit and push (dot removed).
-- [v]  Add celebshot screenshot to README using imgs/celebClockScreenshot.jpg.
-- [v]  Clarified screenshot filename preference to celebclockscreenshot; update README/path accordingly.
-- [v]  Commit and push screenshot rename + README path update (commit ae92105).
-- [v]  Wait for new instructions
-- [v] 2026/05/23-20:49: Read chat history and follow last instruction.
- - [ ] dateAndTimestamp these instructions here. 
-- [ ] see temp.md, (i'll soon update it further but don't wait for that). 
- - [ ] check in and push to github
-  - [ ] consolidate all readme lists by minute starting at 0.  
-  - [ ] each celeb has a category (art, government, etc.) 
-  - [ ] url column (as a link), 
-  - [ ] and copywrite name and link.  
-  - [ ] If UNKONWN copywrite, then mark it thus. 
-  - [ ] filename (give each a simple filename 1elvis.jpg  etc)
-  - [ ] checkbox if downloaded. We only have the single image for minute 7.
-  - [ ] make a setup folder with .js (nodejs?) that with following modules: 
-    - [ ] ai instructions .md file (for each image put as background in clock, mark fingertip with green circle, get approval from developer or corrections, get next step instructions (default: mark with red circle expected target minute after resizing image.
-    get developer's approval. store results in a data table in the js folder  (js objects and arrays). 
-    - [ ] use ai to create the images for missing minutes, and the resized image, cropping out (with the developer's instructions) unneeded parts of the picture colorizing and correcting so we can use a picture as is.  for the minute. 
-    - [ ] the program itself would be a simple one, choosing one out of set of celebs (and next round without repeating the celebs).
-    - [ ] empty the temp.md
-    - [ ] change the readme to reflect all we said. remove any unnecessary and old instructions. 
-- [ ] commit and push all to github. 
-- [v] 2026/05/23-22:40: Read instruction markdown and execute pending checklist items.
-- [v] 2026/05/23-22:40: Rewrite README with consolidated minute-sorted table and metadata columns.
-- [v] 2026/05/23-22:40: Create setup Node.js scaffolding, AI workflow instructions, and JS data table files.
-- [v] 2026/05/23-22:40: Empty temp.md and remove stale plan content.
-- [v] 2026/05/23-22:40: Commit and push updates to origin/main.
-- [v] 2026/05/23-22:44: Committed and pushed changes (a577c88) to origin/main.
-- [v] 2026/05/24-00:01: Migrated celeb minute data from JS to JSON, preserved latest entries, and updated workflow/doc references.
-- [v] 2026/05/24-00:09: Added .vscode/settings.json to version control and pushed commit ac78d0e to origin/main.
-- [v] 2026/05/24-00:19: Logged request to split README/dev docs, create redundant celebs JSON, and verify old minute knowledge coverage.
-- [v] 2026/05/24-00:24: Rewrote README app-first, moved dev notes to ai/development.md, added setup/data/celebs.json, spaced celebMinutes.json entries, and verified old minute mappings remain in git history.
-- [v] 2026/05/24-00:28: Merged legacy README minute mappings into current setup/data/celebMinutes.json and regenerated setup/data/celebs.json with consolidated comma-separated minute lists.
-- [v] 2026/05/24-00:56: Read ai/aiDevInstructions.md and switched active logging to ai/chatHistory.md.
-- [v] 2026/05/24-00:56: Verified latest completed commit and push: 674f0fb to origin/main (legacy minute mapping merge).
-- [v] 2026/05/24-00:56: Prepare check-in headline: docs/log rename (old instruction/history filenames -> new names), then commit and push.
-- [v] 2026/05/24-00:58: Committed and pushed rename/log update to origin/main: 2446a2d (docs/log rename: old -> new instruction/history files).
-- [v] 2026/05/24-01:11: Added reconstruction metadata fields in setup/data/celebMinutes.json and verified Muhammad Ali minute-7 source URL from JSON.
-- [v] 2026/05/24-01:14: Documented Muhammad Ali minute-7 processing details and started next celeb by downloading David Bowie source to imgs/08-davidbowie.jpg.
-- [v] 2026/05/24-01:21: Normalized Ali filename in JSON, removed README dataset list in favor of JSON references, fixed renamed instruction/history links, and added Bowie fingertip preview at imgs/08-davidbowie-fingertip-preview.svg.
-- [v] 2026/05/24-01:27: Reverted Ali filename to 07-format in JSON/file path and added Bowie overlay viewer at imgs/08-davidbowie-overlay.html.
-- [v] 2026/05/24-01:31: Read server-preview instruction and start a local static HTTP server for previewing HTML in a separate tab.
-- [v] 2026/05/24-01:34: Verified .vscode/settings.json is tracked in git; terminal auto-approve settings are preserved across sessions without a new commit.
-- [v] 2026/05/24-01:45: Fixed blocked preview by replacing SVG-based Bowie overlay with pure HTML/CSS marker in imgs/08-davidbowie-overlay.html.
-- [v] 2026/05/24-01:47: Opened Bowie overlay through localhost server in a new browser tab (not current tab) to bypass blocked preview content.
-- [ ] 2026/05/24-01:53: Adjust Bowie fingertip marker by user correction (right 5px, up 10px) from closed fist to raised finger direction.
-- [v] 2026/05/24-01:56: Kept old Bowie marker as blue reference at 270,36 and set corrected green fingertip marker to 275,26; synced JSON note.
-- [v] 2026/05/24-02:01: Moved Bowie green marker to 285,11 (right +10, up +15 from prior) and kept blue marker fixed at 270,36.
-- [v] 2026/05/24-02:03: Moved Bowie green marker 5px further up to 285,6; kept blue marker fixed at 270,36.
-- [v] 2026/05/24-02:05: Moved Bowie green marker 2px further up to 285,4; kept blue marker fixed at 270,36.
-- [v] 2026/05/24-02:10: Cropped Bowie source to right/above region into imgs/08-davidbowie-crop-right-above.jpg and updated crop metadata in setup/data/celebMinutes.json.
-- [v] 2026/05/24-02:13: Moved all Bowie files from imgs into imgs/temp folder.
-- [v] 2026/05/24-02:06: Set clock default image to imgs/temp/08-davidbowie-crop-right-above.jpg and updated setup instructions to use imgs/temp first and keep temp files until explicit deletion instruction.
-- [v] 2026/05/24-02:16: Fixed empty-clock startup visibility by loading full Bowie temp image (imgs/temp/08-davidbowie.jpg) instead of tight crop.
-- [v] 2026/05/24-02:20: Restored startup image to cropped Bowie file (imgs/temp/08-davidbowie-crop-right-above.jpg) per developer request.
-- [v] 2026/05/24-02:24: Copied cropped Bowie image to imgs/08-davidbowie.jpg so uncropped filename points to cropped content.
-- [v] 2026/05/24-02:28: Switched startup image path to imgs/08-davidbowie.jpg so auto filename lookup uses cropped content copy.
-- [v] 2026/05/24-02:34: Set startup to minute 08 from JSON data and select candidate index 0 (Bowie prioritized first if multiple candidates exist).
-- [v] 2026/05/24-02:38: Switched JSON-driven startup test to minute 07 and prioritized Muhammad Ali for index 0 selection.
-- [v] 2026/05/24-02:43: Changed Ali to minute 09 in filename/JSON, set startup test to minute 09, and moved red target marker to minute 09.
-- [v] 2026/05/24-02:49: Switched startup/test target back to minute 08 with Bowie prioritized and moved red target marker to minute 08.
-- [v] 2026/05/24-02:54: Made red target marker auto-follow selected minute (no manual positioning) and verified Bowie minute-8 path uses imgs/08-davidbowie.jpg (cropped content copy).
-- [v] 2026/05/24-03:00: Changed celeb image fit to contain mode so Bowie (and others) scale inside the clock circle instead of over-cropping.
-- [v] 2026/05/24-03:07: Removed incorrect Bowie crop artifacts, renamed Bowie original to imgs/temp/08-davidbowie-orig.jpg, and updated setup instructions for -orig naming and crop-intent guidance.
-- [v] 2026/05/24-03:15: Cropped Bowie to circle-sized working region and marked reached fingertip location (285,4), then synced JSON metadata.
-- [v] 2026/05/24-03:22: Re-cropped Bowie by slicing off above fingertip and right of fingertip so fingertip is at the upper-right corner.
-- [v] 2026/05/24-03:30: Kept overlay HTML, removed unused Bowie artifacts, stored fingertip circle coord+size in JSON, created corrected imgs/temp/08-davidbowie-crop.jpg, and requested developer check.
-- [v] 2026/05/24-03:36: Copied approved Bowie crop from imgs/temp/08-davidbowie-crop.jpg to imgs/08-davidbowie.jpg for developer verification.
-- [v] 2026/05/24-03:45: Applied shrink-only image resize (no right shift) for Bowie test; red-dot move deferred to developer review.
-- [v] 2026/05/24-03:52: Applied developer-defined sequence in setup instructions and increased Bowie size from 0.65 to 0.85 (shrink-only, no shift).
-- [v] 2026/05/24-03:58: Reviewed setup instructions for clarity and removed redundant lines while keeping required process order.
-- [ ] 2026/05/24-02:30: Add testing mode so clock real-time sync is disabled and startup hour/minute are fixed by configurable defaults.
-- [v] 2026/05/24-04:01: Set Bowie to minute 05 with filename/data updates, cleared all imgs/temp content, and added test-mode toggle with digital time input.
+Accomplished chunks:
+- [v] 2026-05-23 22h Data/docs: JSON migration, README split, setup workflow scaffold.
+- [v] 2026-05-24 00h Dataset: legacy minute knowledge merged; celeb index rebuilt.
+- [v] 2026-05-24 02h Clock: minute-driven startup; red dot minute-linked.
+- [v] 2026-05-24 03h Image setup iterations updated: fingertip -> crop -> resize -> correct hour -> test.
+- [v] 2026-05-24 04h Test/Auto mode toggle added; manual digital time input added.
+- [v] 2026-05-24 04h JSON/image sync: minute + filename updated; image rename aligned; Bowie set to 05; temp cleared.
+- [v] 2026-05-24 04h Auto mode timing polish: minute-boundary sync pushed to main.
+- [v] 2026-05-24 05h UI simplify: removed image-load panel + AI Adjust; kept only Test/Auto controls.
+- [v] 2026-05-24 05h Minute image routing: 0608->Ali (moved Ali to 08), missing+12->Uncle Sam fallback, label shows "No minute image set.".
+- [v] 2026-05-24 05h Fix minute/hour mixup: Uncle Sam restored to minute 00; kept as default unfound fallback.
+- [v] 2026-05-24 05h Clarify behavior: Uncle Sam is regular minute 00 image and also fallback for "No minute image set." cases.
+- [v] 2026-05-24 05h Major rewrite: 2-hour precomputed schedule, minute-by-minute image routing (exact→-3→+2→Uncle Sam via JSON isDownloaded only), fix circular loadImage/setMinute bug, auto red-dot on minute tick, test OFF by default, rebuild schedule at 12:00. File load errors are separate (hide+status only, no Uncle Sam).

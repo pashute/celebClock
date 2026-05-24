@@ -5,11 +5,17 @@ Use this workflow for every source image.
 ## Developer process order
 1. Load candidate image as the clock background.
 2. Find fingertip, mark it with a green circle, and get developer corrections/approval.
-3. Crop to fingertip only if the developer instructs that crop.
-4. Resize and determine the new minute.
-5. Mark the expected minute target with a red circle and get final developer approval.
-6. Update JSON minute listing and filename.
-7. Rename the image file in `imgs/` (or `imgs/temp/` while in-progress) to match JSON.
+3. Crop according to developer direction.
+4. Resize and determine the minute alignment.
+5. Correct hour/minute alignment on the clock.
+6. Test by toggling Test/Auto mode and confirming marker placement.
+7. Update JSON fields (`minute`, `filename`).
+8. Rename the image file in `imgs/` (or `imgs/temp/` while in-progress) to match JSON.
+
+## Feedback iteration sequence
+- fingertip -> crop -> resize -> correct hour -> test
+- after each step, collect developer feedback and iterate before continuing
+- final sync must keep JSON and image filename aligned
 
 ## Default behavior
 - If no correction is provided after fingertip review, continue with the current fingertip mark.
