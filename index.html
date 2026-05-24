@@ -594,11 +594,19 @@ function syncToRealTime() {
 function startRealtimeClock() {
   stopRealtimeClock();
   syncToRealTime();
-  clockTimerId = setInterval(syncToRealTime, 30000);
+
+  // Align updates to minute boundaries, then tick every 60s.
+  const now = new Date();
+  const msToNextMinute = ((60 - now.getSeconds()) * 1000) - now.getMilliseconds();
+  clockTimerId = setTimeout(() => {
+    syncToRealTime();
+    clockTimerId = setInterval(syncToRealTime, 60000);
+  }, Math.max(1, msToNextMinute));
 }
 
 function stopRealtimeClock() {
   if (clockTimerId) {
+    clearTimeout(clockTimerId);
     clearInterval(clockTimerId);
     clockTimerId = null;
   }
