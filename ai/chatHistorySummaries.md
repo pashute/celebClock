@@ -57,3 +57,4 @@ AI chat history.  for recovery from Codespaces carshes.
 - [v] 2026/05/23-22:40: Commit and push updates to origin/main.
 - [v] 2026/05/23-22:44: Committed and pushed changes (a577c88) to origin/main.
 - [v] 2026/05/24-00:01: Migrated celeb minute data from JS to JSON, preserved latest entries, and updated workflow/doc references.
+- [v] 2026/05/24-00:09: Added .vscode/settings.json to version control and pushed commit ac78d0e to origin/main.
