@@ -1,155 +1,156 @@
 [
   {
     "celeb": "Audrey Hepburn",
-    "minutesFromJson": [
+    "minutes": [
       16
     ],
-    "minutesFromReadme": [
-      16
-    ]
+    "minutesCsv": "16"
   },
   {
     "celeb": "Barack Obama",
-    "minutesFromJson": [
+    "minutes": [
+      3,
+      6,
+      9,
+      10,
+      11,
+      12,
       30
     ],
-    "minutesFromReadme": [
-      30
-    ]
+    "minutesCsv": "3,6,9,10,11,12,30"
   },
   {
     "celeb": "Barack Obama (2nd)",
-    "minutesFromJson": [
+    "minutes": [
       10
     ],
-    "minutesFromReadme": [
-      10
-    ]
+    "minutesCsv": "10"
   },
   {
     "celeb": "Beyonce",
-    "minutesFromJson": [
+    "minutes": [
       19
     ],
-    "minutesFromReadme": [
-      19
-    ]
+    "minutesCsv": "19"
   },
   {
     "celeb": "Cate Blanchett",
-    "minutesFromJson": [
+    "minutes": [
       45
     ],
-    "minutesFromReadme": [
-      45
-    ]
+    "minutesCsv": "45"
   },
   {
     "celeb": "David Bowie",
-    "minutesFromJson": [
+    "minutes": [
       8
     ],
-    "minutesFromReadme": [
-      8
-    ]
+    "minutesCsv": "8"
   },
   {
     "celeb": "Denzel Washington",
-    "minutesFromJson": [
+    "minutes": [
       10
     ],
-    "minutesFromReadme": [
-      10
-    ]
+    "minutesCsv": "10"
   },
   {
     "celeb": "Denzel Washington (2nd)",
-    "minutesFromJson": [
+    "minutes": [
       13
     ],
-    "minutesFromReadme": [
-      13
-    ]
+    "minutesCsv": "13"
   },
   {
     "celeb": "Donald Trump",
-    "minutesFromJson": [
+    "minutes": [
+      1,
+      2,
+      3,
+      4,
+      9,
+      10,
+      11,
+      12,
       15
     ],
-    "minutesFromReadme": [
-      15
-    ]
+    "minutesCsv": "1,2,3,4,9,10,11,12,15"
   },
   {
     "celeb": "Elvis Presley",
-    "minutesFromJson": [
+    "minutes": [
+      2,
+      3,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
       40
     ],
-    "minutesFromReadme": [
-      40
-    ]
+    "minutesCsv": "2,3,6,7,9,10,11,12,40"
   },
   {
     "celeb": "ET",
-    "minutesFromJson": [
+    "minutes": [
       45
     ],
-    "minutesFromReadme": [
-      45
-    ]
+    "minutesCsv": "45"
   },
   {
     "celeb": "Hillary Clinton",
-    "minutesFromJson": [
+    "minutes": [
+      7,
       18
     ],
-    "minutesFromReadme": [
-      18
-    ]
+    "minutesCsv": "7,18"
   },
   {
     "celeb": "Jackie Chan (2nd)",
-    "minutesFromJson": [
+    "minutes": [
       0
     ],
-    "minutesFromReadme": [
-      0
-    ]
+    "minutesCsv": "0"
   },
   {
     "celeb": "Marilyn Monroe",
-    "minutesFromJson": [
+    "minutes": [
       0
     ],
-    "minutesFromReadme": [
-      0
-    ]
+    "minutesCsv": "0"
   },
   {
     "celeb": "Meryl Streep",
-    "minutesFromJson": [
+    "minutes": [
       9
     ],
-    "minutesFromReadme": [
-      9
-    ]
+    "minutesCsv": "9"
+  },
+  {
+    "celeb": "Michelle Obama",
+    "minutes": [
+      1,
+      2,
+      3,
+      9,
+      12
+    ],
+    "minutesCsv": "1,2,3,9,12"
   },
   {
     "celeb": "Muhammad Ali",
-    "minutesFromJson": [
+    "minutes": [
+      1,
       7
     ],
-    "minutesFromReadme": [
-      7
-    ]
+    "minutesCsv": "1,7"
   },
   {
     "celeb": "Uncle Sam",
-    "minutesFromJson": [
+    "minutes": [
       0
     ],
-    "minutesFromReadme": [
-      0
-    ]
+    "minutesCsv": "0"
   }
 ]

@@ -1,12 +1,12 @@
 [
   {
     "minute": 0,
-    "celeb": "Uncle Sam",
-    "category": "Icon",
-    "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Uncle_Sam_%28pointing_finger%29.png",
-    "copyrightOwner": "U.S. Government/Public Domain",
-    "copyrightLink": "https://commons.wikimedia.org/wiki/File:Uncle_Sam_(pointing_finger).png",
-    "filename": "00-unclesam.png",
+    "celeb": "Jackie Chan (2nd)",
+    "category": "Actor",
+    "sourceUrl": "https://i.pinimg.com/736x/b0/fe/7a/b0fe7ad5ece0c175d3e43311ba245040.jpg",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "00-jackiechan2.jpg",
     "downloaded": false
   },
 
@@ -23,12 +23,177 @@
 
   {
     "minute": 0,
-    "celeb": "Jackie Chan (2nd)",
-    "category": "Actor",
-    "sourceUrl": "https://i.pinimg.com/736x/b0/fe/7a/b0fe7ad5ece0c175d3e43311ba245040.jpg",
+    "celeb": "Uncle Sam",
+    "category": "Icon",
+    "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Uncle_Sam_%28pointing_finger%29.png",
+    "copyrightOwner": "U.S. Government/Public Domain",
+    "copyrightLink": "https://commons.wikimedia.org/wiki/File:Uncle_Sam_(pointing_finger).png",
+    "filename": "00-unclesam.png",
+    "downloaded": false
+  },
+
+  {
+    "minute": 1,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
     "copyrightOwner": "UNKNOWN",
     "copyrightLink": "",
-    "filename": "00-jackiechan2.jpg",
+    "filename": "01-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 1,
+    "celeb": "Michelle Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "01-michelleobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 1,
+    "celeb": "Muhammad Ali",
+    "category": "Athlete",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "01-muhammadali-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 2,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "02-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 2,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "02-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 2,
+    "celeb": "Michelle Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "02-michelleobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 3,
+    "celeb": "Barack Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "03-barackobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 3,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "03-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 3,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "03-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 3,
+    "celeb": "Michelle Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "03-michelleobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 4,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "04-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 6,
+    "celeb": "Barack Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "06-barackobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 6,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "06-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 7,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "07-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 7,
+    "celeb": "Hillary Clinton",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "07-hillaryclinton-legacy.jpg",
     "downloaded": false
   },
 
@@ -56,12 +221,78 @@
 
   {
     "minute": 9,
+    "celeb": "Barack Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "09-barackobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 9,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "09-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 9,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "09-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 9,
     "celeb": "Meryl Streep",
     "category": "Actor",
     "sourceUrl": "https://media.vanityfair.com/photos/54ea998073b710d476cfec15/master/w_1600,c_limit/patricia-arquette-acceptance-speech.png",
     "copyrightOwner": "Vanity Fair",
     "copyrightLink": "",
     "filename": "09-merylstreep.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 9,
+    "celeb": "Michelle Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "09-michelleobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 10,
+    "celeb": "Barack Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "10-barackobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 10,
+    "celeb": "Barack Obama (2nd)",
+    "category": "Government",
+    "sourceUrl": "https://compote.slate.com/images/b0a7a633-9ee5-4be9-b063-2075ad1e4290.jpg?crop=5000%2C3200%2Cx0%2Cy0&width=840",
+    "copyrightOwner": "Getty Images",
+    "copyrightLink": "",
+    "filename": "10-barackobama2.jpg",
     "downloaded": false
   },
 
@@ -78,12 +309,100 @@
 
   {
     "minute": 10,
-    "celeb": "Barack Obama (2nd)",
+    "celeb": "Donald Trump",
     "category": "Government",
-    "sourceUrl": "https://compote.slate.com/images/b0a7a633-9ee5-4be9-b063-2075ad1e4290.jpg?crop=5000%2C3200%2Cx0%2Cy0&width=840",
-    "copyrightOwner": "Getty Images",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
     "copyrightLink": "",
-    "filename": "10-barackobama2.jpg",
+    "filename": "10-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 10,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "10-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 11,
+    "celeb": "Barack Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "11-barackobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 11,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "11-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 11,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "11-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 12,
+    "celeb": "Barack Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "12-barackobama-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 12,
+    "celeb": "Donald Trump",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "12-donaldtrump-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 12,
+    "celeb": "Elvis Presley",
+    "category": "Musician",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "12-elvispresley-legacy.jpg",
+    "downloaded": false
+  },
+
+  {
+    "minute": 12,
+    "celeb": "Michelle Obama",
+    "category": "Government",
+    "sourceUrl": "",
+    "copyrightOwner": "UNKNOWN",
+    "copyrightLink": "",
+    "filename": "12-michelleobama-legacy.jpg",
     "downloaded": false
   },
 

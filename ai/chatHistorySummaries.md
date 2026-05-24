@@ -60,3 +60,4 @@ AI chat history.  for recovery from Codespaces carshes.
 - [v] 2026/05/24-00:09: Added .vscode/settings.json to version control and pushed commit ac78d0e to origin/main.
 - [v] 2026/05/24-00:19: Logged request to split README/dev docs, create redundant celebs JSON, and verify old minute knowledge coverage.
 - [v] 2026/05/24-00:24: Rewrote README app-first, moved dev notes to ai/development.md, added setup/data/celebs.json, spaced celebMinutes.json entries, and verified old minute mappings remain in git history.
+- [v] 2026/05/24-00:28: Merged legacy README minute mappings into current setup/data/celebMinutes.json and regenerated setup/data/celebs.json with consolidated comma-separated minute lists.
