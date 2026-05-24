@@ -53,3 +53,4 @@ AI chat history.  for recovery from Codespaces crashes.
 - [v] 2026/05/24-00:56: Read ai/aiDevInstructions.md and switched active logging to ai/chatHistory.md.
 - [v] 2026/05/24-00:56: Verified latest completed commit and push: 674f0fb to origin/main (legacy minute mapping merge).
 - [v] 2026/05/24-00:56: Prepare check-in headline: docs/log rename (old instruction/history filenames -> new names), then commit and push.
+- [v] 2026/05/24-00:58: Committed and pushed rename/log update to origin/main: 2446a2d (docs/log rename: old -> new instruction/history files).
