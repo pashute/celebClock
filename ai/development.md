@@ -22,4 +22,5 @@ This file discribes the dev stages which are:
 - Minute data: [setup/data/celebMinutes.json](../setup/data/celebMinutes.json)
 - Redundant celeb map: [setup/data/celebs.json](../setup/data/celebs.json)
 - Workflow code: [setup/js/](../setup/js/)
-- AI action log: [ai/chatHistorySummaries.md](chatHistorySummaries.md)
+- Workflow instructions: [setup/ai-setup-instructions.md](../setup/ai-setup-instructions.md)
+- AI action log: [ai/chatHistory.md](chatHistory.md)

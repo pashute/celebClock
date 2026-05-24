@@ -30,5 +30,14 @@ Give a short list of files affected, in the commit message.
 
 List the commit headline (not the details) in the chatHistory.md
 
+# External tab
 
-RECORD EVERYTHING YOU DO AND SAVE THE HISTORY!
+When asked to run the server or an html file, don't run in the same browser tab!
+
+That will hid the codespaces, and going back will close it and crash it, needing to recover. 
+
+Remember ALWAYS to open the interaction in a new browser tab. 
+
+# Bottom line
+
+REMINDER:  RECORD EVERYTHING YOU DO AND SAVE THE HISTORY!!!

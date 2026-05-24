@@ -54,3 +54,39 @@ AI chat history.  for recovery from Codespaces crashes.
 - [v] 2026/05/24-00:56: Verified latest completed commit and push: 674f0fb to origin/main (legacy minute mapping merge).
 - [v] 2026/05/24-00:56: Prepare check-in headline: docs/log rename (old instruction/history filenames -> new names), then commit and push.
 - [v] 2026/05/24-00:58: Committed and pushed rename/log update to origin/main: 2446a2d (docs/log rename: old -> new instruction/history files).
+- [v] 2026/05/24-01:11: Added reconstruction metadata fields in setup/data/celebMinutes.json and verified Muhammad Ali minute-7 source URL from JSON.
+- [v] 2026/05/24-01:14: Documented Muhammad Ali minute-7 processing details and started next celeb by downloading David Bowie source to imgs/08-davidbowie.jpg.
+- [v] 2026/05/24-01:21: Normalized Ali filename in JSON, removed README dataset list in favor of JSON references, fixed renamed instruction/history links, and added Bowie fingertip preview at imgs/08-davidbowie-fingertip-preview.svg.
+- [v] 2026/05/24-01:27: Reverted Ali filename to 07-format in JSON/file path and added Bowie overlay viewer at imgs/08-davidbowie-overlay.html.
+- [v] 2026/05/24-01:31: Read server-preview instruction and start a local static HTTP server for previewing HTML in a separate tab.
+- [v] 2026/05/24-01:34: Verified .vscode/settings.json is tracked in git; terminal auto-approve settings are preserved across sessions without a new commit.
+- [v] 2026/05/24-01:45: Fixed blocked preview by replacing SVG-based Bowie overlay with pure HTML/CSS marker in imgs/08-davidbowie-overlay.html.
+- [v] 2026/05/24-01:47: Opened Bowie overlay through localhost server in a new browser tab (not current tab) to bypass blocked preview content.
+- [ ] 2026/05/24-01:53: Adjust Bowie fingertip marker by user correction (right 5px, up 10px) from closed fist to raised finger direction.
+- [v] 2026/05/24-01:56: Kept old Bowie marker as blue reference at 270,36 and set corrected green fingertip marker to 275,26; synced JSON note.
+- [v] 2026/05/24-02:01: Moved Bowie green marker to 285,11 (right +10, up +15 from prior) and kept blue marker fixed at 270,36.
+- [v] 2026/05/24-02:03: Moved Bowie green marker 5px further up to 285,6; kept blue marker fixed at 270,36.
+- [v] 2026/05/24-02:05: Moved Bowie green marker 2px further up to 285,4; kept blue marker fixed at 270,36.
+- [v] 2026/05/24-02:10: Cropped Bowie source to right/above region into imgs/08-davidbowie-crop-right-above.jpg and updated crop metadata in setup/data/celebMinutes.json.
+- [v] 2026/05/24-02:13: Moved all Bowie files from imgs into imgs/temp folder.
+- [v] 2026/05/24-02:06: Set clock default image to imgs/temp/08-davidbowie-crop-right-above.jpg and updated setup instructions to use imgs/temp first and keep temp files until explicit deletion instruction.
+- [v] 2026/05/24-02:16: Fixed empty-clock startup visibility by loading full Bowie temp image (imgs/temp/08-davidbowie.jpg) instead of tight crop.
+- [v] 2026/05/24-02:20: Restored startup image to cropped Bowie file (imgs/temp/08-davidbowie-crop-right-above.jpg) per developer request.
+- [v] 2026/05/24-02:24: Copied cropped Bowie image to imgs/08-davidbowie.jpg so uncropped filename points to cropped content.
+- [v] 2026/05/24-02:28: Switched startup image path to imgs/08-davidbowie.jpg so auto filename lookup uses cropped content copy.
+- [v] 2026/05/24-02:34: Set startup to minute 08 from JSON data and select candidate index 0 (Bowie prioritized first if multiple candidates exist).
+- [v] 2026/05/24-02:38: Switched JSON-driven startup test to minute 07 and prioritized Muhammad Ali for index 0 selection.
+- [v] 2026/05/24-02:43: Changed Ali to minute 09 in filename/JSON, set startup test to minute 09, and moved red target marker to minute 09.
+- [v] 2026/05/24-02:49: Switched startup/test target back to minute 08 with Bowie prioritized and moved red target marker to minute 08.
+- [v] 2026/05/24-02:54: Made red target marker auto-follow selected minute (no manual positioning) and verified Bowie minute-8 path uses imgs/08-davidbowie.jpg (cropped content copy).
+- [v] 2026/05/24-03:00: Changed celeb image fit to contain mode so Bowie (and others) scale inside the clock circle instead of over-cropping.
+- [v] 2026/05/24-03:07: Removed incorrect Bowie crop artifacts, renamed Bowie original to imgs/temp/08-davidbowie-orig.jpg, and updated setup instructions for -orig naming and crop-intent guidance.
+- [v] 2026/05/24-03:15: Cropped Bowie to circle-sized working region and marked reached fingertip location (285,4), then synced JSON metadata.
+- [v] 2026/05/24-03:22: Re-cropped Bowie by slicing off above fingertip and right of fingertip so fingertip is at the upper-right corner.
+- [v] 2026/05/24-03:30: Kept overlay HTML, removed unused Bowie artifacts, stored fingertip circle coord+size in JSON, created corrected imgs/temp/08-davidbowie-crop.jpg, and requested developer check.
+- [v] 2026/05/24-03:36: Copied approved Bowie crop from imgs/temp/08-davidbowie-crop.jpg to imgs/08-davidbowie.jpg for developer verification.
+- [v] 2026/05/24-03:45: Applied shrink-only image resize (no right shift) for Bowie test; red-dot move deferred to developer review.
+- [v] 2026/05/24-03:52: Applied developer-defined sequence in setup instructions and increased Bowie size from 0.65 to 0.85 (shrink-only, no shift).
+- [v] 2026/05/24-03:58: Reviewed setup instructions for clarity and removed redundant lines while keeping required process order.
+- [ ] 2026/05/24-02:30: Add testing mode so clock real-time sync is disabled and startup hour/minute are fixed by configurable defaults.
+- [v] 2026/05/24-04:01: Set Bowie to minute 05 with filename/data updates, cleared all imgs/temp content, and added test-mode toggle with digital time input.

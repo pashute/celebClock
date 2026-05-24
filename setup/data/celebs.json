@@ -43,9 +43,9 @@
   {
     "celeb": "David Bowie",
     "minutes": [
-      8
+      5
     ],
-    "minutesCsv": "8"
+    "minutesCsv": "5"
   },
   {
     "celeb": "Denzel Washington",
@@ -142,9 +142,9 @@
     "celeb": "Muhammad Ali",
     "minutes": [
       1,
-      7
+      9
     ],
-    "minutesCsv": "1,7"
+    "minutesCsv": "1,9"
   },
   {
     "celeb": "Uncle Sam",

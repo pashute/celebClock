@@ -5,6 +5,9 @@
         "git commit": true,
         "git push": true,
         "git rev-parse": true,
-        "set": true
+        "set": true,
+        "lsof": true,
+        "true": true,
+        "\"$BROWSER\"": true
     }
 }

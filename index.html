@@ -22,6 +22,7 @@
   --active-tick: #c8a84b;
   --cs: 500px;
   --img-crop-r: 197px;
+  --img-scale: 0.85;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -87,10 +88,12 @@ body {
 }
 
 #celeb-img {
-  width: 295px;
-  height: 295px;
-  object-fit: cover;
-  object-position: center top;
+  width: calc(var(--img-crop-r) * 2);
+  height: calc(var(--img-crop-r) * 2);
+  object-fit: contain;
+  object-position: center center;
+  transform: scale(var(--img-scale));
+  transform-origin: center center;
   opacity: 0.92;
   transition: opacity 0.5s ease;
   filter: drop-shadow(0 0 24px rgba(200, 168, 75, 0.3));
@@ -272,7 +275,7 @@ body {
     <circle cx="250" cy="250" r="238" fill="none" stroke="#141422" stroke-width="1"/>
     <g id="g-ticks"></g>
     <g id="g-hours"></g>
-    <circle id="hour-target-marker" cx="393" cy="128" r="9" fill="#ff2b2b" stroke="#ffe3e3" stroke-width="2"/>
+    <circle id="hour-target-marker" cx="250" cy="62" r="9" fill="#ff2b2b" stroke="#ffe3e3" stroke-width="2"/>
     <line id="hour-hand" x1="250" y1="250" x2="250" y2="160"/>
     <circle cx="250" cy="250" r="7" fill="var(--gold)" opacity="0.9"/>
     <circle cx="250" cy="250" r="3" fill="#0b0b16"/>
@@ -292,6 +295,11 @@ body {
   </div>
   <div class="row">
     <button class="btn" id="btn-load">Load</button>
+    <button class="btn" id="btn-test-mode" type="button">Test Mode: Off</button>
+  </div>
+  <div class="row" id="test-time-row" style="display:none;">
+    <input type="text" id="inp-test-time" placeholder="HH:MM or minute" style="max-width:180px;" />
+    <button class="btn" id="btn-apply-test" type="button">Apply Time</button>
   </div>
   <div class="row">
     <input type="file" id="inp-file" accept="image/*" />
@@ -318,6 +326,8 @@ let curHour = 12;
 let curMinute = 0;
 let hourMode = false;
 let loadedSrc = null;
+let isTestMode = false;
+let clockTimerId = null;
 
 function polar(r, angleDeg) {
   const rad = (angleDeg - 90) * Math.PI / 180;
@@ -475,6 +485,12 @@ function updateClock() {
   hand.setAttribute('x2', hx);
   hand.setAttribute('y2', hy);
 
+  // Red target marker tracks the currently selected minute automatically.
+  const [tx, ty] = polar(R_HOUR_C, curMinute * 6);
+  const marker = document.getElementById('hour-target-marker');
+  marker.setAttribute('cx', tx);
+  marker.setAttribute('cy', ty);
+
   document.getElementById('dig-h').textContent = String(curHour).padStart(2, '0');
   document.getElementById('dig-m').textContent = String(curMinute).padStart(2, '0');
 }
@@ -568,20 +584,145 @@ document.getElementById('btn-ai').addEventListener('click', () => {
 });
 
 function syncToRealTime() {
+  if (isTestMode) return;
   const now = new Date();
   curHour = now.getHours() % 12 || 12;
   curMinute = now.getMinutes();
   updateClock();
 }
 
+function startRealtimeClock() {
+  stopRealtimeClock();
+  syncToRealTime();
+  clockTimerId = setInterval(syncToRealTime, 30000);
+}
+
+function stopRealtimeClock() {
+  if (clockTimerId) {
+    clearInterval(clockTimerId);
+    clockTimerId = null;
+  }
+}
+
+function applyTestTimeInput() {
+  const raw = document.getElementById('inp-test-time').value.trim();
+  if (!raw) {
+    setStatus('Enter HH:MM or minute', 'err');
+    return;
+  }
+
+  let nextHour = curHour;
+  let nextMinute = curMinute;
+
+  if (raw.includes(':')) {
+    const [h, m] = raw.split(':');
+    nextHour = Number(h);
+    nextMinute = Number(m);
+  } else {
+    const digits = raw.replace(/\D/g, '');
+    if (!digits) {
+      setStatus('Invalid test time', 'err');
+      return;
+    }
+    if (digits.length <= 2) {
+      nextMinute = Number(digits);
+    } else {
+      const h = digits.slice(0, digits.length - 2);
+      const m = digits.slice(-2);
+      nextHour = Number(h);
+      nextMinute = Number(m);
+    }
+  }
+
+  if (!Number.isFinite(nextHour) || !Number.isFinite(nextMinute) || nextMinute < 0 || nextMinute > 59) {
+    setStatus('Invalid test time', 'err');
+    return;
+  }
+
+  nextHour = ((nextHour % 12) + 12) % 12 || 12;
+  setHour(nextHour);
+  setMinute(nextMinute);
+  setStatus(`Test time set: ${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')}`, 'ok');
+}
+
+function setTestMode(enabled) {
+  isTestMode = enabled;
+  const row = document.getElementById('test-time-row');
+  const btn = document.getElementById('btn-test-mode');
+
+  row.style.display = enabled ? 'flex' : 'none';
+  btn.textContent = enabled ? 'Test Mode: On' : 'Test Mode: Off';
+
+  if (enabled) {
+    stopRealtimeClock();
+    setStatus('Test mode enabled: enter time and click Apply Time', 'ok');
+  } else {
+    startRealtimeClock();
+    setStatus('Returned to realtime clock', 'ok');
+  }
+}
+
+document.getElementById('btn-test-mode').addEventListener('click', () => {
+  setTestMode(!isTestMode);
+});
+
+document.getElementById('btn-apply-test').addEventListener('click', applyTestTimeInput);
+
+document.getElementById('inp-test-time').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    applyTestTimeInput();
+  }
+});
+
 drawTicks();
 drawHourGroups();
-syncToRealTime();
-setInterval(syncToRealTime, 30000);
+startRealtimeClock();
 
-document.getElementById('inp-url').value = 'imgs/ali_7.jpg';
-document.getElementById('inp-min').value = '7';
-loadImage(document.getElementById('inp-url').value, 'Muhammad Ali', 7);
+const START_MINUTE = 5;
+const START_INDEX = 0;
+const PREFERRED_CELEB_BY_MINUTE = {
+  5: 'David Bowie',
+  9: 'Muhammad Ali'
+};
+
+async function loadStartupFromMinute(minute, index) {
+  document.getElementById('inp-min').value = String(minute).padStart(2, '0');
+
+  try {
+    const res = await fetch('setup/data/celebMinutes.json');
+    if (!res.ok) throw new Error('startup json fetch failed');
+    const rows = await res.json();
+
+    const candidates = rows.filter((r) => Number(r.minute) === minute);
+    if (!candidates.length) throw new Error('no minute candidates');
+
+    const preferred = PREFERRED_CELEB_BY_MINUTE[minute];
+    candidates.sort((a, b) => {
+      const aPreferred = preferred && a.celeb === preferred ? 1 : 0;
+      const bPreferred = preferred && b.celeb === preferred ? 1 : 0;
+      return bPreferred - aPreferred;
+    });
+
+    const pick = candidates[index] || candidates[0];
+    const src = pick.filename ? `imgs/${pick.filename}` : pick.sourceUrl;
+    const name = pick.celeb || 'Celebrity';
+
+    if (!src) throw new Error('empty startup source');
+
+    document.getElementById('inp-url').value = src;
+    document.getElementById('inp-name').value = name;
+    loadImage(src, name, minute);
+    return;
+  } catch (err) {
+    // Fallback keeps app usable if JSON fetch/select fails.
+    const fallbackSrc = 'imgs/05-davidbowie.jpg';
+    document.getElementById('inp-url').value = fallbackSrc;
+    document.getElementById('inp-name').value = 'David Bowie';
+    loadImage(fallbackSrc, 'David Bowie', minute);
+  }
+}
+
+loadStartupFromMinute(START_MINUTE, START_INDEX);
 </script>
 </body>
 </html>
