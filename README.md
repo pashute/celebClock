@@ -37,7 +37,7 @@ Build and curate a minute-based celebrity pointing image set for the clock, with
 ## Setup Folder
 The new setup workflow is in [setup/](setup):
 - [setup/ai-instructions.md](setup/ai-instructions.md)
-- [setup/data/celebMinutes.js](setup/data/celebMinutes.js)
+- [setup/data/celebMinutes.json](setup/data/celebMinutes.json)
 - [setup/js/workflowState.js](setup/js/workflowState.js)
 - [setup/js/runWorkflow.js](setup/js/runWorkflow.js)
 - [setup/js/nonRepeatingPicker.js](setup/js/nonRepeatingPicker.js)

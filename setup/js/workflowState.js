@@ -1,4 +1,4 @@
-import { celebMinuteEntries } from "../data/celebMinutes.js";
+import celebMinuteEntries from "../data/celebMinutes.json" with { type: "json" };
 
 export const workflowSteps = [
   "Load source image as clock background",
