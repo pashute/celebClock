@@ -84,3 +84,9 @@ Accomplished chunks:
 - [ ] 2026-05-24 06h New request: erase Elvis `initial` in JSON, then commit+push now (explicit no-wait instruction).
 - [ ] 2026-05-24 06h Commit+push action now. Headline: Elvis minute 42 finalize + clear initial + crop5 active + workflow signal/server updates.
 - [ ] 2026-05-24 06h Approved step: replace active Elvis image with crop5 and sync JSON crop/marker coords.
+
+- [x] CHECKPOINT: Prepared HF migration handoff (Replicate blocked by insufficient credit).
+  - Added script: `setup/generate-ai-variant.py` (Replicate-based minute-variant generator scaffold).
+  - Status: minute-39 generation attempt failed with Replicate 402 insufficient credit.
+  - Next planned action: user creates HF token, then switch script to Hugging Face Inference API and generate Elvis minute 39 first.
+  - Future sequence after minute 39 approval: generate 40, 41, 43, 44 and run full setup workflow per approval gates.
